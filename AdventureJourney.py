@@ -17,8 +17,8 @@ def parse_instructions():
     with open(instructions,'r') as f:
         md_str=f.read()
         all=md_str.split("## Directions to Use")
-        directions=all[len(all)-1]
-        directions=directions.strip('\n').strip('`')
+        directions=all[-1]
+        directions=re.sub(r'[^a-zA-Z0-9]+','',directions)
     return directions
 
 def calc_euclidean_dist(directions:str):
