@@ -1,8 +1,10 @@
 import re
 import math
 
-def parse_instructions(instructions:str=None):
-    """Retrieves the directions to travel from an md file
+def parse_instructions():
+    """Retrieves the directions to travel from an md file. Directions are expected to be 
+    in the format of # of steps and direction character (e.g. 15L) and should be 
+    below the string '## Directions to Use'
 
     Args:
         instructions (str, optional): Path to the md file. Set to Adventurer Path.md 
@@ -11,12 +13,12 @@ def parse_instructions(instructions:str=None):
     Returns:
         str: string representation of directions. e.g. 5L12F
     """
-    if instructions is None:instructions='Adventurer Path.md'
+    instructions='Adventurer Path.md'
     with open(instructions,'r') as f:
         md_str=f.read()
-        all=md_str.split("## Directions to Use\n\n")
+        all=md_str.split("## Directions to Use")
         directions=all[len(all)-1]
-        directions=directions.strip('`')
+        directions=directions.strip('\n').strip('`')
     return directions
 
 def calc_euclidean_dist(directions:str):
@@ -39,19 +41,18 @@ def calc_euclidean_dist(directions:str):
     """
     NorthSouth=0
     EastWest=0
-    
-    dirArr=list(filter(None,re.split(r'([a-z,A-Z])',directions)))
-    pos=0
+    #Split direction string into array of directions. e.g. ['15F','4L']
+    dirArr=list(filter(None,re.split(r'(\d{1,}[a-zA-Z]{1})',directions)))
     #Calculate the total X-axis and Y-axis distance taken from point of origin
-    while pos<len(dirArr):
-        steps=(int)(dirArr[pos])
-        dir=dirArr[pos+1]
+    for stepDir in dirArr:
+        steps=(int)(stepDir[:-1])
+        dir=stepDir[-1]
         if dir=='F': NorthSouth+=steps
         elif dir=='B': NorthSouth-=steps
         elif dir=='R':EastWest+=steps
         elif dir=='L':EastWest-=steps
-        pos+=2
-    #calculate Euclidean distance
+    
+    #Calculate Euclidean distance
     dist=math.sqrt(math.pow(NorthSouth,2)+math.pow(EastWest,2)) 
     return dist
 

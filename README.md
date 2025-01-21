@@ -21,4 +21,4 @@ Given the Path Instructions above, programmatically parse the instructions and d
 
 **Running the Program**
 
-- Enter python3 AdventureJourney.py into the terminal to find the Euclidean distance to the destination
+- Enter _python3 AdventureJourney.py_ into the terminal to print out the Euclidean distance to the destination
