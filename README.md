@@ -22,4 +22,4 @@ Given the Path Instructions above, programmatically parse the instructions and d
 **Running the Program**
 
 - Enter _python3 AdventureJourney.py_ into the terminal to print out the Euclidean distance to the destination
-- To test different directions, update the [./Adventurer Path.md](./Adventurer%20Path.md) file or manually call the distance calculating function with a test direction string by entering _python3 -c 'import AdventureJourney; print(AdventureJourney.calc\_euclidean\_dist(\<direction_string\>))_ into the terminal. Replace \<direction_string\> with your directions (such as '15L4B')
+- To test different directions, update the [./Adventurer Path.md](./Adventurer%20Path.md) file or manually call the distance calculating function with a test direction string by entering _python3 -c 'import AdventureJourney; print(AdventureJourney.calc\_euclidean\_dist(\<direction_string\>))'_ into the terminal. Replace \<direction_string\> with your directions (such as '15L4B')
